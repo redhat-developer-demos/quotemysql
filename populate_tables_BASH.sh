@@ -1,0 +1,1 @@
+ mysql -uroot -padmin < /tmp/populate_table_quotes_BASH.sql

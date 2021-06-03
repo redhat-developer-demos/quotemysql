@@ -1,0 +1,1 @@
+mysql --user=root --password=admin < /tmp/query_table_quotes.sql
