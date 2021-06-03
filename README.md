@@ -6,7 +6,7 @@ To create the mariadb database:
 
 
 To create and populate the table "quotes":  
-PowerShell:
+PowerShell:  
 `kubectl get pods`  
 $podname="{mysql pod name from previous kubectl get pods command}"  
 
@@ -29,7 +29,7 @@ $podname="{mysql pod name from previous kubectl get pods command}"
 
 
 
-Bash:
+Bash:  
 `kubectl get pods`  
 export PODNAME="{mysql pod name from previous kubectl get pods command}"  
 
@@ -49,3 +49,6 @@ export PODNAME="{mysql pod name from previous kubectl get pods command}"
 `kubectl cp ./query_table_quotes.sql $PODNAME:/tmp/query_table_quotes.sql`  
 `kubectl cp ./query_table_quotes.sh $PODNAME:/tmp/query_table_quotes.sh`  
 `kubectl exec deploy/mysql -- /bin/bash ./tmp/query_table_quotes.sh`  
+
+Expose service:  
+`kubectl expose deploy/mysql --name mysql --port 3306 --type NodePort`
