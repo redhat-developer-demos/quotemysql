@@ -24,7 +24,7 @@ spec:
         image: mariadb
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"
         ports:
         - containerPort: 3306
