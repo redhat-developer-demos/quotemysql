@@ -12,6 +12,8 @@ spec:
       labels:
         app: mysql
         tier: database
+        sandbox: learn-kubernetes
+        learn-kubernetes: quotemysql
     spec:
       containers:
       - name: mariadb
