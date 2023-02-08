@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  labels:
+    sandbox: learn-kubernetes
+    learn-kubernetes: quotemysql
 spec:
   selector:
     matchLabels:
@@ -12,8 +15,6 @@ spec:
       labels:
         app: mysql
         tier: database
-        sandbox: learn-kubernetes
-        learn-kubernetes: quotemysql
     spec:
       containers:
       - name: mariadb
