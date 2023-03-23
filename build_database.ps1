@@ -1,3 +1,5 @@
+$a = (kubectl get pods | select-string 'mysql') -match 'mysql([^\s]+)'; $podname = $matches[0]
+
 kubectl cp ./create_database_quotesdb.sql ${podname}:/tmp/create_database_quotesdb.sql
 kubectl cp ./create_database.sh ${podname}:/tmp/create_database.sh
 kubectl exec deploy/mysql -- /bin/bash ./tmp/create_database.sh
