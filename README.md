@@ -7,8 +7,7 @@ To create the mariadb database:
 
 To create and populate the table "quotes":  
 PowerShell:  
-`kubectl get pods`  
-$podname="{mysql pod name from previous kubectl get pods command}"  
+`$a = (kubectl get pods | select-string 'mysql') -match 'mysql([^\s]+)'; $podname = $matches[0]` 
 
 `kubectl cp ./create_database_quotesdb.sql ${podname}:/tmp/create_database_quotesdb.sql`  
 `kubectl cp ./create_database.sh ${podname}:/tmp/create_database.sh`  
@@ -27,11 +26,10 @@ $podname="{mysql pod name from previous kubectl get pods command}"
 `kubectl cp ./query_table_quotes.sh ${podname}:/tmp/query_table_quotes.sh`  
 `kubectl exec deploy/mysql -- /bin/bash ./tmp/query_table_quotes.sh`  
 
-
+(or simply run ./build_database.ps1)
 
 Bash:  
-`kubectl get pods`  
-export PODNAME="{mysql pod name from previous kubectl get pods command}"  
+`export PODNAME=$(a=$(kubectl get pods | grep 'mysql') && set -- $a && echo $1)` 
 
 `kubectl cp ./create_database_quotesdb.sql $PODNAME:/tmp/create_database_quotesdb.sql`  
 `kubectl cp ./create_database.sh $PODNAME:/tmp/create_database.sh`  
@@ -49,6 +47,3 @@ export PODNAME="{mysql pod name from previous kubectl get pods command}"
 `kubectl cp ./query_table_quotes.sql $PODNAME:/tmp/query_table_quotes.sql`  
 `kubectl cp ./query_table_quotes.sh $PODNAME:/tmp/query_table_quotes.sh`  
 `kubectl exec deploy/mysql -- /bin/bash ./tmp/query_table_quotes.sh`  
-
-Expose service:  
-`kubectl expose deploy/mysql --name mysql --port 3306 --type NodePort`
