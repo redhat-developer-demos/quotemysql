@@ -1,1 +1,1 @@
-mysql --user=root --password=admin < /tmp/populate-table-quotes.sql
+mariadb --user=root --password=admin < /tmp/populate-table-quotes.sql

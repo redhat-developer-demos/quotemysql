@@ -1,1 +1,1 @@
- mysql -uroot -padmin < /tmp/create_table_quotes.sql
+ mariadb -uroot -padmin < /tmp/create_table_quotes.sql
